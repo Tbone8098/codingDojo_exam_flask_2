@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="flex justify-center">
+    <div>
+        <h2>Create a Band</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="/band/create" method="post">
+            <div class="flex-col">
+                <label for="name">Band Name</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div class="flex-col">
+                <label for="genre">Music Genre</label>
+                <input type="text" name="genre" id="genre">
+            </div>
+            <div class="flex-col">
+                <label for="home_city">Home City</label>
+                <input type="text" name="home_city" id="home_city">
+            </div>
+            <button>Create</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

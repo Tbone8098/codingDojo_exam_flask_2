@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="grid-container">
+    <div class="s-full col-4">
+        <h1>Login</h1>
+        <form action="/process_login" method="post">
+            <div class="flex-col">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div class="flex-col">
+                <label for="pw">Password</label>
+                <input type="text" name="pw" id="pw">
+                <button class="pw-btn">Show</button>
+            </div>
+            <button>Login</button>
+        </form>
+    </div>
+    <div class="col-4">
+        <div class="flex-col align-center">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    <div class="s-full col-4">
+        <h1>Register</h1>
+        <form action="/user/create" method="post">
+            <div class="flex-col">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" id="first_name">
+            </div>
+            <div class="flex-col">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id="last_name">
+            </div>
+            <div class="flex-col">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div class="flex-col ">
+                <label for="pw">Password</label>
+                <input type="password" name="pw" id="pw">
+                <button class="pw-btn">Show</button>
+            </div>
+            <div class="flex-col">
+                <label for="confirm_pw">Confirm Password</label>
+                <input type="password" name="confirm_pw" id="confirm_pw">
+                <button class="pw-btn">Show</button>
+            </div>
+            <button>Create User</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

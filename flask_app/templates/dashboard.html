@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<h3>All Bands</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Band Name</th>
+            <th>Founding Member</th>
+            <th>Genre</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for band in all_bands %}
+        <tr>
+            <td>{{band.name}}</td>
+            <td>{{band.get_creator.full_name}}</td>
+            <td>{{band.genre}}</td>
+            <td>
+                {% if band.creator_id != session['uuid'] %}
+                {% if user.in_band( band['id'] ) %}
+                <a href="/band/{{band.id}}/quit">Quit</a>
+                {% else %}
+                <a href="/band/{{band.id}}/join">Join</a>
+                {% endif %}
+                {% else %}
+                <a href="/band/{{band.id}}/edit">Edit</a>
+                <a href="/band/{{band.id}}/delete">Delete</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

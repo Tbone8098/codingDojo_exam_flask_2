@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="flex justify-evenly">
+    <div>
+        <h2>My Bands</h2>
+        {% for band in user.get_bands() %}
+        <p>{{band.name}} <a href="/band/{{band.id}}/edit">Edit</a> | <a href="/band/{{band.id}}/delete">Delete</a></p>
+        {% endfor %}
+    </div>
+    <div>
+        <h2>Joined Bands</h2>
+        {% for band in user.get_joined_bands() %}
+        <p>{{band.name}} <a href="/band/{{band.id}}/quit">Quit</a></p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
